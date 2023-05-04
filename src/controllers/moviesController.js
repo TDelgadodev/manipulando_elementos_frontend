@@ -17,7 +17,10 @@ const moviesController = {
             include: ['genre']
         })
             .then(movies => {
-                res.render('moviesList.ejs', {movies})
+                res.render('moviesList.ejs', {
+                    movies,
+                    title : 'Movies List'
+                })
             })
     },
     'detail': (req, res) => {
@@ -62,7 +65,11 @@ const moviesController = {
         Promise
         .all([promGenres, promActors])
         .then(([allGenres, allActors]) => {
-            return res.render(path.resolve(__dirname, '..', 'views',  'moviesAdd'), {allGenres,allActors})})
+            return res.render(path.resolve(__dirname, '..', 'views',  'moviesAdd'), {
+                allGenres,
+                allActors,
+                title : 'Movie add'
+            })})
         .catch(error => res.send(error))
     },
     create: function (req,res) {
